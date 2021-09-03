@@ -1,0 +1,71 @@
+* {
+    border: none;
+}
+body, html {
+    margin: 0;
+}
+.container {
+    background: linear-gradient(0deg, rgba(62, 62, 62, 0.7), rgba(62, 62, 62, 0.7)), url(../../assets/img/gamer1.jpg);
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.card {
+    width: 326px;
+    height: 358px;
+    border-radius: 6px;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 30px;
+    
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.card--element {
+    margin: 11px;
+    border-radius: 6px;
+}
+.card--title {
+    font-size: 10;
+    font-family: 'Work Sans', 'Open Sans', 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 60px;
+    color: #F2F2F2
+}
+
+.login-field {
+    height: 40px;
+    padding-left: 20px; 
+    background: #3E3E3E;
+    color: white;
+    font-size: 14px;
+}
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: white;
+    opacity: 1; /* Firefox */
+}
+
+.button {
+    padding: 12px;
+    text-align: center;
+    background: none;
+    border: solid #FFFFFF88 1px;
+    color: #FFFFFF88;
+    margin-top: 59px;
+    cursor: pointer;
+    transition: all .3s;
+}
+
+.button:hover {
+    background: #FFFFFF88;
+    color: #000;
+}
+.button:active {
+    background: #AAAAAA88;
+    color: #000;
+    transition: all .1s;
+}
