@@ -14,6 +14,7 @@ export class DataComponent implements OnInit {
 
   token: string = this.cookies.get("token");
   nasaUrl = "https://api.nasa.gov/planetary/apod?api_key=S2RnsPCdMy60xccgdbtLmv256OSesj9YcwG3bVol&date=";
+  pokemonUrl = "https://pokeapi.co/api/v2/pokemon";
 
   imgs:Array<Object> = [];
   imgSources:Array<String> = [];
@@ -21,7 +22,9 @@ export class DataComponent implements OnInit {
   imgExplanations:Array<String> = [];
   imgCopyrights:Array<String> = [];
 
-  pokemonList: Array<Object> = [];
+  pokemonList: Array<any> = [];
+  selectedPokemonImage: String = "https://cdn.static.barracks.gg/BUILD/brk-logo-red.svg"; // Just a random default image
+  selectedPokemonName: String = "Pokemon";
 
   slideIndex = 1;
 
@@ -47,8 +50,14 @@ export class DataComponent implements OnInit {
       });
       date.setDate(date.getDate() - 1);
     }
-    console.log("imgs");
-    console.log(this.imgs);
+    
+    for(var i = 1; i <= 3; i++) {
+      this.http.get<any>(this.pokemonUrl).subscribe(data => {
+        console.log(data);
+        this.pokemonList = data["results"];
+      });
+      date.setDate(date.getDate() - 1);
+    }
     
   }
 
@@ -66,6 +75,16 @@ export class DataComponent implements OnInit {
       }
 
     }
+  }
+
+  updatePokeData(pokemon:any) : void {
+    this.http.get<any>(pokemon["url"]).subscribe(data => {
+      console.log("pokemon");
+      console.log(pokemon);
+      this.selectedPokemonName = pokemon["name"];
+      this.selectedPokemonImage = data["sprites"]["front_default"];
+    });
+    
   }
 
   plusSlides(n:number) {

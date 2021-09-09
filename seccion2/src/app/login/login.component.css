@@ -4,7 +4,7 @@
 body, html {
     margin: 0;
 }
-.container {
+.main-container {
     background: linear-gradient(0deg, rgba(62, 62, 62, 0.7), rgba(62, 62, 62, 0.7)), url(../../assets/img/gamer1.jpg);
     width: 100vw;
     height: 100vh;
