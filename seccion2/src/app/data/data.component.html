@@ -1,29 +1,63 @@
-<div class = "container">
-    <button class = "exit-button">
-        salir
-    </button>
-    <div class = "token-snackbar">
+<div class="main-container">
+    <div class="navigation-bar">
+        <button class="exit-button">
+            Salir
+        </button>
+    </div>
+    <div class="token-snackbar">
         token:{{ token }}
     </div>
 
-    <div id = "tab-bar" class = "tab-bar">
-        <button class = "tab first-tab active" onClick = "activateTab('nasa')">
+    <div id="tab-bar" class="tab-bar">
+        <button id="nasa" class="tab first-tab active-tab" (click)="activateTab('nasa')">
             NASA APOD
         </button>
-        <button class = "tab last-tab">
+        <button id="pokemon" class="tab last-tab" (click)="activateTab('pokemon')">
             POKÉMON
         </button>
     </div>
-    <div id = "nasa-tab">
-        carrousel
-    </div>
-    <div id = "pokemon-tab">
-        <select id = "pokemon-list">
-        </select>
-        <div id = "pokemon-data">
-            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/37.png">
+    <div class="data-container">
+        <div id="nasa-content" class="tab-content">
+            <div class="carrousel">
+                <!-- Full-width images with number and caption text -->
+                <div class="mySlides fade invisible" *ngFor="let img of imgs; let i = index">
+                    <img id="img1" [src]="imgSources[i]" class="nasa-image">
+                    <div class="text">
+                        <div id="nasaTitle1" class="image--title">{{ imgTitles[i] }}</div>
+                        <div id="nasaExplanation1" class="image--explanation">{{ imgExplanations[i] }}</div>
+                        <div id="nasaCopyright1" class="image--copyright">{{ imgCopyrights[i] }}</div>
+                    </div>
+                </div>
+                <!-- Next and previous buttons -->
+                <a class="prev" (click)="plusSlides(-1)">&#10094;</a>
+                <a class="next" (click)="plusSlides(1)">&#10095;</a>
+            </div>
+            <br>
+
+            <!-- The dots/circles -->
+            <div style="text-align:center">
+                <span class="dot" (click)="currentSlide(1)"></span>
+                <span class="dot" (click)="currentSlide(2)"></span>
+                <span class="dot" (click)="currentSlide(3)"></span>
+            </div>
+        </div>
+        <div id="pokemon-content" class="tab-content invisible">
+            <div class="dropdown">
+                <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    Dropdown button
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li *ngFor="let pokemon of pokemons; let i = index">
+                        <a class="dropdown-item" href="#">
+                            {{ pokemon["name"] }}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div id="pokemon-data">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/37.png">
+            </div>
         </div>
     </div>
-
-    
 </div>
