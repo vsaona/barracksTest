@@ -1,1 +1,29 @@
-<p>data works!</p>
+<div class = "container">
+    <button class = "exit-button">
+        salir
+    </button>
+    <div class = "token-snackbar">
+        token:{{ token }}
+    </div>
+
+    <div id = "tab-bar" class = "tab-bar">
+        <button class = "tab first-tab active" onClick = "activateTab('nasa')">
+            NASA APOD
+        </button>
+        <button class = "tab last-tab">
+            POKÉMON
+        </button>
+    </div>
+    <div id = "nasa-tab">
+        carrousel
+    </div>
+    <div id = "pokemon-tab">
+        <select id = "pokemon-list">
+        </select>
+        <div id = "pokemon-data">
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/37.png">
+        </div>
+    </div>
+
+    
+</div>

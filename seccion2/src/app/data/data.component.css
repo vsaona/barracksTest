@@ -1,0 +1,24 @@
+.container {
+    background: #F2F2F2;
+    padding: 60px;
+}
+.exit-button {
+    background: #E02020;
+    color: #F2F2F2;
+}
+
+.token-snackbar {
+    background: #3E3E3E;
+    white-space: initial;
+    word-wrap: break-word;
+}
+
+.tab {
+    background: #2C167A88;
+    color: rgba(255, 255, 255, .5);
+}
+
+.active-tab {
+    background: #2C167A;
+    color: white;
+}
