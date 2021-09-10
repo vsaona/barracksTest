@@ -112,3 +112,17 @@ git push
 ```
 
 11. Escriba una función en Javascript o Typescript, la cual realice una llamada API REST del tipo POST a la URL ‘/recibeDatos’, que envíe la fecha actual del sistema, y que muestre en una alerta con el código HTTP de respuesta.
+```JavaScript
+var http = new XMLHttpRequest();
+var url = "/recibeDatos";
+var fecha = Date.now();
+http.open("POST", url, true);
+http.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+http.onreadystatechange = function() {
+    if(http.readyState == 4) { 
+      //aqui obtienes la respuesta de tu peticion
+      alert(http.responseText);
+    }
+}
+http.send(JSON.stringify({fecha:fecha}));
+```

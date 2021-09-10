@@ -50,7 +50,7 @@
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                     <li *ngFor="let pokemon of pokemonList; let i = index">
                         <a class="dropdown-item" (click)="updatePokeData(pokemon)">
-                            {{ pokemon["name"] }}
+                            {{ pokemon["name"].charAt(0).toUpperCase() + pokemon["name"].slice(1) }}
                         </a>
                     </li>
                 </ul>

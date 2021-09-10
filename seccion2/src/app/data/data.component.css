@@ -177,6 +177,10 @@
 .dropdown-toggle {
     width: 164px;
 }
+.dropdown-menu {
+    max-height: 300px;
+    overflow: auto;
+}
 
 .pokemonSprite {
     min-width: 320px;

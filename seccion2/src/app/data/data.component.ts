@@ -14,7 +14,7 @@ export class DataComponent implements OnInit {
 
   token: string = this.cookies.get("token");
   nasaUrl = "https://api.nasa.gov/planetary/apod?api_key=S2RnsPCdMy60xccgdbtLmv256OSesj9YcwG3bVol&date=";
-  pokemonUrl = "https://pokeapi.co/api/v2/pokemon";
+  pokemonUrl = "https://pokeapi.co/api/v2/pokemon?limit=151";
 
   imgs:Array<Object> = [];
   imgSources:Array<String> = [];
@@ -37,23 +37,23 @@ export class DataComponent implements OnInit {
     
     var date = new Date();
     for(var i = 1; i <= 3; i++) {
+      date.setDate(date.getDate() - 1);
       this.http.get<any>(this.nasaUrl + date.toISOString().split('T')[0]).subscribe(data => {
         this.imgs.push(data);
         this.imgSources.push(data["url"]);
         this.imgTitles.push(data["title"] + " / " + data["date"]);
         this.imgExplanations.push(data["explanation"].substring(0,50));
         this.imgCopyrights.push(data["copyright"]);
-        this.showSlides(1);
+        if(this.imgs.length > 2) {
+          this.showSlides(1);
+        }
       });
-      date.setDate(date.getDate() - 1);
     }
     
-    for(var i = 1; i <= 3; i++) {
-      this.http.get<any>(this.pokemonUrl).subscribe(data => {
-        this.pokemonList = data["results"];
-      });
-      date.setDate(date.getDate() - 1);
-    }
+    this.http.get<any>(this.pokemonUrl).subscribe(data => {
+      this.pokemonList = data["results"];
+    });
+    date.setDate(date.getDate() - 1);
     
   }
 
@@ -75,7 +75,8 @@ export class DataComponent implements OnInit {
 
   updatePokeData(pokemon:any) : void {
     this.http.get<any>(pokemon["url"]).subscribe(data => {
-      this.selectedPokemonName = pokemon["name"];
+      console.log(data);
+      this.selectedPokemonName = pokemon["name"].charAt(0).toUpperCase() + pokemon["name"].slice(1);
       this.selectedPokemonImage = data["sprites"]["front_default"];
     });
     
@@ -94,8 +95,12 @@ export class DataComponent implements OnInit {
     var i;
     var slides = document.getElementsByClassName("mySlides");
     var dots = document.getElementsByClassName("dot");
-    if (n > slides.length) {this.slideIndex = 1}
-    if (n < 1) {this.slideIndex = slides.length}
+    if (n > slides.length) {
+      this.slideIndex = 1
+    }
+    if (n < 1) {
+      this.slideIndex = slides.length
+    }
     for (i = 0; i < slides.length; i++) {
         slides[i].classList.add("invisible");
     }
