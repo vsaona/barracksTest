@@ -1,6 +1,6 @@
 <div class="main-container">
     <div class="navigation-bar">
-        <button class="exit-button">
+        <button class="exit-button" (click)="exit()">
             Salir
         </button>
     </div>
@@ -56,7 +56,7 @@
                 </ul>
             </div>
             <div id="pokemon-data">
-                <img class = "pokemonSprite" [src]="selectedPokemonImage">
+                <img id = "pokemonImage" class = "pokemonSprite" [src]="selectedPokemonImage">
             </div>
         </div>
     </div>

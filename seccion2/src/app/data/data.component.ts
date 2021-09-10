@@ -36,11 +36,8 @@ export class DataComponent implements OnInit {
     
     
     var date = new Date();
-    console.log("imgs");
-    console.log(this.imgs);
     for(var i = 1; i <= 3; i++) {
       this.http.get<any>(this.nasaUrl + date.toISOString().split('T')[0]).subscribe(data => {
-        console.log(data);
         this.imgs.push(data);
         this.imgSources.push(data["url"]);
         this.imgTitles.push(data["title"] + " / " + data["date"]);
@@ -53,7 +50,6 @@ export class DataComponent implements OnInit {
     
     for(var i = 1; i <= 3; i++) {
       this.http.get<any>(this.pokemonUrl).subscribe(data => {
-        console.log(data);
         this.pokemonList = data["results"];
       });
       date.setDate(date.getDate() - 1);
@@ -79,8 +75,6 @@ export class DataComponent implements OnInit {
 
   updatePokeData(pokemon:any) : void {
     this.http.get<any>(pokemon["url"]).subscribe(data => {
-      console.log("pokemon");
-      console.log(pokemon);
       this.selectedPokemonName = pokemon["name"];
       this.selectedPokemonImage = data["sprites"]["front_default"];
     });
@@ -108,9 +102,13 @@ export class DataComponent implements OnInit {
     for (i = 0; i < dots.length; i++) {
         dots[i].classList.remove("active");
     }
-    console.log(slides);
     slides[this.slideIndex-1].classList.remove("invisible");
     dots[this.slideIndex-1].classList.add("active");
   }
 
+  exit(): void {
+    this.cookies.delete("token", "/");
+    
+    this.router.navigate(['/account/login']);
+  }
 }

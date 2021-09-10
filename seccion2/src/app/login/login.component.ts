@@ -18,14 +18,12 @@ export class LoginComponent implements OnInit {
   };
 
   login(): void {
-    console.log("hola");
     this.http.post<any>('https://beta-api.barracks.gg/v2/Auth/Authenticate', {
       "mail": "testdeveloper@barracks.gg",
       "password": "testdeveloper"
     }, {observe: "response"}).subscribe(data => {
       if(data.status == 200) {
-        console.log(data.body.token);
-        this.cookies.set("token", data.body.token);
+        this.cookies.set("token", data.body.token, 0, "/");
         this.router.navigate(['/account/data']);
       } else {
         alert("¡Ha ingresado mal su usuario y contraseña!\n Código de error: " + data.status);
